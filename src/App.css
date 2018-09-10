@@ -1,0 +1,78 @@
+.App {
+  text-align: center;
+}
+
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.topics {
+  text-align: left
+}
+
+.nav-links-bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #d6baba;
+  border: #222;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+.nav-link {
+  float: left;
+  text-align: center;
+}
+.nav-link-login {
+  float: right;
+  text-align: center;
+}
+
+.nav-link a {
+  display: block;
+  text-align: center;
+  padding: 8px;
+  text-decoration: none;
+}
+.nav-link :hover{
+  background-color: maroon;
+  color: white
+}
+
+.mode-vote {
+  border: solid;
+  width: 25px;
+  padding-left: 1cm
+}
+
+.comment-box {
+  border: double
+}
+
+.votes {
+  float: left;
+  padding-left: 1cm
+}
+
+.login-msg {
+  color: crimson
+}
+
+#comment-box{
+  width: 80%;
+  height: 20%;
+}
