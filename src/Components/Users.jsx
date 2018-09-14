@@ -9,7 +9,7 @@ class Users extends Component {
     render() {
         
         return (
-            <div>
+            <div className="users">
                 <form onSubmit={this.handleSubmit}>
                     User name:<input type="text" defaultValue="cooljmessy"/>
                     Password<input type="password" />

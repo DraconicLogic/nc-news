@@ -2,45 +2,39 @@ import React, { Component } from 'react';
 import PostComment from './PostComment'
 import * as api from '../Api.js'
 import ModVote from './ModVote'
+import dayjs from 'dayjs'
 
 class Comment extends Component {
     state = {
         comments: []
     }
-    render() {console.log(this.state)
+    render() { const logged = (this.props.user.username)
         return (
             <div>
                 <PostComment articleid={this.props.articleid} user={this.props.user} newcoms={this.handleNewComments}/>
-                <h1>Comments</h1>
-                {console.log(this.state.comments)}
-                {this.state.comments.map((comment, index) => {
-                return <div key={index}><ModVote votes={comment.votes} id={comment._id}/>
-                        <p>Username: {comment.created_by.username} - Created at: {comment.created_at}</p>
-                        <p>{comment.body}</p> <button  onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>
-                        <hr/>
-                    </div>
-                })}
+                    <div className="comments"> 
+                    <h1>Comments</h1>
+                   
+                    {}
+                    {this.state.comments.map((comment, index) => {
+                        const username = comment.created_by.username
+                    return <div key={index} >
+                    <ModVote votes={comment.votes} id={comment._id} url="comments"/>
+                            <p>Username: {comment.created_by.username} - Created at: {dayjs(comment.created_at).format('DD/MM/YYYY')}</p>
+                            <p>{comment.body}</p> 
+                            <button {logged !== username ? 'hidden' : ''}  onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>
+                            <hr/>
+                        </div>
+                    })}
+                  </div>  
             </div>
         );
     }
     componentDidMount() {
 
-        // const newComments = this.props.comments
-        // console.log(this.props.comments)
-        // this.setState({
-        //     comments: newComments
-        // })
-        
-        // api.getCommentByID(id)
-        // .then((newComments) => {
-            //     console.log(newComments)
-            // })
-        }
-        componentDidUpdate(prev, current, other){
-            console.log(prev, 'PREVIOUS PROPS')
-            console.log(current,'CURRENT STATE')
-            console.log(this.props, 'CURRENT PROPS')
-            console.log(this.state,'STATE NOW')
+    }
+        componentDidUpdate(prev, current){
+           
 
             if (prev.comments.length !== this.props.comments.length) {
                 const newComments = this.props.comments

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../Api.js'
 import {Link} from 'react-router-dom'
+import ModVote from './ModVote'
 
 class Home extends Component {
     state = {
@@ -8,18 +9,25 @@ class Home extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="home">
                 <h1>NC NEWS</h1>
                 <h3>More impartial than the BBC</h3>
-                <br/>
-                <br/>
                 <h2>Top 5 articles</h2>
                 <ol>
-                {this.state.articles.map((article, index) => {
-                    if(index < 5) {
-                        return (  <Link key={index} to={`/ncnews/articles/${article._id}`}><li>{article.title} - Votes: {article.votes}</li></Link>)
-                    }
-                    return null
+                {this.state.articles.map((newsArticle, index) => {
+                   
+                   return (<div className="cards" key={index} >
+                    <div className="card-title">
+                   <Link to={`/ncnews/articles/${newsArticle._id}`}><h3 >{newsArticle.title}</h3></Link>
+                    </div>
+                   <ModVote className="card-vote" id={newsArticle._id} votes={newsArticle.votes} url="articles"/>
+   
+                       <div className="card-body">{newsArticle.body}</div>
+   
+                       <Link to={`/ncnews/articles/${newsArticle._id}`}>
+                       <p className="card-readmore">Read More...</p></Link>
+                   </div>
+                   )
                 })}
                 </ol>
             </div>
@@ -31,8 +39,9 @@ class Home extends Component {
             articles.sort((a, b) => {
                 return (b.votes - a.votes)
             })
+            const topFive = articles.slice(0,5)
             this.setState({
-                articles: articles
+                articles: topFive
             })
         })
     }

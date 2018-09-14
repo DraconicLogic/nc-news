@@ -6,13 +6,13 @@ class Topics extends Component {
     state = {
         topics: []
     }
-    render() {
+    render() { console.log(this.state)
         return (
-            <div>
+            <div className="topics">
                 <h1>Topics</h1>
             <ul>
                 {this.state.topics.map((topic, index) => {
-                    console.log(topic)
+
                     
                     return <Link key={index} to={`/ncnews/topics/${topic.slug}/articles`}><li>{topic.title}</li></Link>
                 })}

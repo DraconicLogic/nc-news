@@ -2,7 +2,6 @@ const DB_URL = 'https://draconiclogic-nc-news.herokuapp.com/api'
 
 
 function postData(url, data) {
-    console.log(data)
     return fetch(url, {
         method: "POST",
         mode: "cors",
@@ -16,7 +15,6 @@ function postData(url, data) {
         body: JSON.stringify(data)
     })
     .then((response) => {
-    console.log(response)
    return response.json()})
 }
 
@@ -44,19 +42,17 @@ export const getArticles = () => {
 }
 
 export const getArticleByID = (id) => {
-    console.log(id)
     return fetch(`${DB_URL}/articles/${id}`)
     .then(buffer => buffer.json())
 }
 
 export const getCommentsByID = (id) => {
-    console.log(id)
     return fetch(`${DB_URL}/articles/${id}/comments`)
     .then(buffer => buffer.json())
 }
 
-export const castVote = (id, direction) => {
-    return fetch(`${DB_URL}/articles/${id}?vote=${direction}`, {method: 'PUT'})
+export const castVote = (id, direction, url) => {
+    return fetch(`${DB_URL}/${url}/${id}?vote=${direction}`, {method: 'PUT'})
     .then(buffer => buffer.json())
 
 }
@@ -67,7 +63,6 @@ export const getTopics = () => {
 export const postComment = ({body, belongs_to, created_by}) => {
     const url = `${DB_URL}/articles/${belongs_to}/comments`
     const data = {body, created_by, belongs_to}
-    console.log(data)
 
      return postData(url, data)
     

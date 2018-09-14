@@ -11,10 +11,16 @@ class PostComment extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
+
                <input placeholder="Make a comment" onChange={this.handleText} type="text" name="comment" id="comment-box"/> 
+
                <input type="button" onClick={this.handleSubmit} value="Submit"/><br/>
-               {!!this.state.user._id ? <p></p> : <p className="login-msg">Please login to make comment</p>}
+
+               {!!this.state.user._id ? <p></p> 
+               : <p className="login-msg">Please login to make comment</p>}
+               
                </form>
+
             </div>
         );
     }
@@ -43,7 +49,7 @@ class PostComment extends Component {
         }
     }
     componentDidMount () {
-        console.log(this.props.user.username)
+
         
         if (!!this.props.user.username) {
             const newUser = this.props.user

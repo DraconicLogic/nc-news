@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import * as api from '../Api.js'
 import Comment from './Comment.jsx'
 import ModVote from './ModVote.jsx'
+import dayjs from 'dayjs'
+
 
 class Article extends Component {
     state = {
@@ -9,11 +11,14 @@ class Article extends Component {
         comments: []
     }
 
-    render() {console.log(this.state.comments)
-        return (
+    render() {console.log(this.props)
+        return ( 
             <div>
-                <ModVote className="votes" votes={this.state.article.votes} id={this.state.article._id} />
-                <p>Posted at: {this.state.article.created_at}</p>
+                <br/>
+                <ModVote className="votes" votes={this.state.article.votes} id={this.state.article._id} url='articles' />
+                
+
+                <p>Posted at: {dayjs(this.state.article.created_at).format('DD/MM/YYYY')}</p>
                 <h1>{this.state.article.title}</h1>
                 <p>{this.state.article.body}</p>                
                 <div className="comment-box">
@@ -25,7 +30,6 @@ class Article extends Component {
 
     }
     componentDidMount() {
-        console.log(this.props.id.match.params.articleid)
         const article_id = this.props.id.match.params.articleid
 
         const article = api.getArticleByID(article_id)

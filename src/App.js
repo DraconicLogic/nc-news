@@ -9,25 +9,23 @@ import NavBar from './Components/NavBar'
 import Home from './Components/Home'
 import Users from './Components/Users'
 import * as api from './Api.js'
+import Logout from './Components/Logout'
 
 class App extends Component {
   state = {
     user: {}
   }
-
-  
-
-
   render() {
     return (
       <div className="App">
-      <NavBar user={this.state.user} logout={this.handleLogOut}/><br/><br/><br/><br/>
+      <NavBar user={this.state.user} logout={this.handleLogOut}/>
       
       <Route exact path="/" component={Home} />
       <Route exact path="/ncnews" component={Home}/>
       <Route exact path="/ncnews/topics" component={Topics} />
       <Route exact path="/ncnews/articles" component={Articles} />
       <Route exact path="/ncnews/users" render={() => <Users login={this.handleLogin}/>} />
+      <Route exact path="/ncnews/logout" component={Logout}/>
 
       <Route exact path="/ncnews/articles/:articleid"
        render={(params) => <Article id={params} user={this.state.user} />} />
@@ -43,7 +41,6 @@ class App extends Component {
      api.getUserByID(username)
      .then(({user}) => {
        const newUser = {...user}
-       console.log(newUser)
        this.setState({
          user: newUser
        })
@@ -56,11 +53,6 @@ class App extends Component {
       user: newUser
     })
   }
-
-
-  
-  
-
 }
 
 export default App;
