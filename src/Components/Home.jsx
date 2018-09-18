@@ -9,15 +9,17 @@ class Home extends Component {
     }
     render() {
         return (
-            <div className="home">
+            <div id="home">
+
                 <h1>NC NEWS</h1>
                 <h3>More impartial than the BBC</h3>
                 <h2>Top 5 articles</h2>
-                <ol>
+
+                <ol id="top5">
                 {this.state.articles.map((newsArticle, index) => {
                    
                    return (<div className="cards" key={index} >
-                    <div className="card-title">
+                   <div className="card-title">
                    <Link to={`/ncnews/articles/${newsArticle._id}`}><h3 >{newsArticle.title}</h3></Link>
                     </div>
                    <ModVote className="card-vote" id={newsArticle._id} votes={newsArticle.votes} url="articles"/>

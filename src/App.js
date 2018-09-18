@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Articles from './Components/Articles.jsx'
-import {Route} from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 import Article from './Components/Article.jsx'
 import Topics from './Components/Topics.jsx'
 import TopicArticles from './Components/TopicArticles.jsx'
@@ -17,9 +17,9 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
+      <div id="App">
       <NavBar user={this.state.user} logout={this.handleLogOut}/>
-      
+      <div className='content'>
       <Route exact path="/" component={Home} />
       <Route exact path="/ncnews" component={Home}/>
       <Route exact path="/ncnews/topics" component={Topics} />
@@ -30,7 +30,7 @@ class App extends Component {
       <Route exact path="/ncnews/articles/:articleid"
        render={(params) => <Article id={params} user={this.state.user} />} />
       <Route exact path="/ncnews/topics/:topic_slug/articles" component={TopicArticles}/>
-       
+      </div>
       </div>
     );
   }

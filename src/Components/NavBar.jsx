@@ -7,7 +7,7 @@ class NavBar extends Component {
     }
     render() {
         return (             
-            <ul className="nav-links-bar">
+            <ul id="nav-links-bar">
                 <li className="nav-link"><Link to={'/ncnews'}>{this.state.links.home}</Link></li>
                 <li className="nav-link"><Link to={"/ncnews/topics"}>{this.state.links.topics}</Link></li>                    
                 <li className="nav-link"><Link to={'/ncnews/articles'}>{this.state.links.articles}</Link></li>            

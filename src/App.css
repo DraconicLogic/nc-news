@@ -1,6 +1,20 @@
-.App {
+#App {
+  display: grid;
   text-align: center;
+  
+  grid-template-rows: 5em 1fr;
 
+}
+
+#home {
+  grid-row: 2;
+}
+
+
+.content {
+  grid-row: 2;
+  margin-left: 1in;
+  margin-right: 1in;
 }
 
 
@@ -16,23 +30,25 @@
 }
 .articles {
   margin-top: 5em;
+ 
 }
 
 .topics {
   text-align: left
 }
 
-.nav-links-bar {
+#nav-links-bar {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  
+  margin-bottom: 2in;
   background-color: #d6baba;
   border: #222;
   overflow: hidden;
   position: fixed;
   top: 0;
-  width: 100%
+  width: 100%;
+  grid-row: 1
 }
 .nav-link {
   float: left;
@@ -90,7 +106,9 @@
   margin-bottom: 0.5cm;
   overflow: hidden;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  background-color: cornsilk
+  background-color: cornsilk;
+  /* margin-left: 25px;
+  margin-right: 25px; */
 }
 
 .card-body {
@@ -98,8 +116,8 @@
   grid-row: 2;
   height: 1cm;
   overflow: hidden;
-  width: 70%;
-  text-align: center
+  text-align: center;
+  align-self: auto;
 }
  
 .card-title {
@@ -139,4 +157,7 @@
 }
 .logout-msg {
   margin-top: 50%
+}
+ol {
+  padding: 0;
 }

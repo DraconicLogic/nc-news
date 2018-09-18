@@ -15,14 +15,15 @@ class Comment extends Component {
                     <div className="comments"> 
                     <h1>Comments</h1>
                    
-                    {}
+                    
                     {this.state.comments.map((comment, index) => {
-                        const username = comment.created_by.username
+
+                    const username = comment.created_by.username
                     return <div key={index} >
                     <ModVote votes={comment.votes} id={comment._id} url="comments"/>
-                            <p>Username: {comment.created_by.username} - Created at: {dayjs(comment.created_at).format('DD/MM/YYYY')}</p>
+                            <p>Username: {username} - Created at: {dayjs(comment.created_at).format('DD/MM/YYYY')}</p>
                             <p>{comment.body}</p> 
-                            <button {logged !== username ? 'hidden' : ''}  onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>
+                            {(logged === username) && <button  onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>}
                             <hr/>
                         </div>
                     })}

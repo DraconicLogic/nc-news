@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 
+
 class Users extends Component {
     state = {
         username: ''
@@ -13,7 +14,6 @@ class Users extends Component {
                 <form onSubmit={this.handleSubmit}>
                     User name:<input type="text" defaultValue="cooljmessy"/>
                     Password<input type="password" />
-                     
                     <input type="submit" value="Login"/>
                 </form>
             </div>
