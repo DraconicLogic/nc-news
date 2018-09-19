@@ -8,55 +8,57 @@ class Comment extends Component {
     state = {
         comments: []
     }
-    render() { const logged = (this.props.user.username)
+
+    componentDidUpdate(prevProps, prevState){
+           
+
+        if (prevProps.comments.length !== this.props.comments.length) {
+            const newComments = this.props.comments
+            this.setState({
+                comments: newComments
+            })
+        }
+
+    }
+
+    render() { 
+        console.log(this.props, 'PROPS')
+        const { comments } = this.state
+        const { username } = (this.props.user)
+       
         return (
             <div>
-                <PostComment articleid={this.props.articleid} user={this.props.user} newcoms={this.handleNewComments}/>
+                <PostComment articleid={this.props.articleid} user={username} newcoms={this.handleNewComments}/>
                     <div className="comments"> 
                     <h1>Comments</h1>
                    
                     
-                    {this.state.comments.map((comment, index) => {
+                    {comments.map((comment, index) => {
 
-                    const username = comment.created_by.username
+                    const user = comment.created_by.username
                     return <div key={index} >
                     <ModVote votes={comment.votes} id={comment._id} url="comments"/>
                             <p>Username: {username} - Created at: {dayjs(comment.created_at).format('DD/MM/YYYY')}</p>
                             <p>{comment.body}</p> 
-                            {(logged === username) && <button  onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>}
+                            {(username === user) && <button  onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>}
                             <hr/>
                         </div>
                     })}
                   </div>  
             </div>
         );
-    }
-    componentDidMount() {
-
-    }
-        componentDidUpdate(prev, current){
-           
-
-            if (prev.comments.length !== this.props.comments.length) {
-                const newComments = this.props.comments
-                this.setState({
-                    comments: newComments
-                })
-            }
-
-        }
-        
+    }     
         
     handlDeleteComment = (id) => {
-        console.log(id)
+      
         api.deleteComment(id)
         .then(({comment}) => {
-            console.log(comment,'DELETED COMMENT')
+
             const copyComments = [...this.state.comments]
             const modComments = copyComments.filter((coms) => {
                 return coms._id !== comment._id
             })
-            console.log(modComments,' MODIFIED COMMENTS')
+  
             this.setState({
                 comments: modComments
             })
@@ -64,7 +66,7 @@ class Comment extends Component {
     }
 
     handleNewComments = (newComment) => {
-        console.log(newComment,'COMMENT PASSED BACK TO COMMENT COMPONENT')
+
         const copyComments = [...this.state.comments]
         const modComments = [...copyComments, newComment]
 
@@ -74,7 +76,7 @@ class Comment extends Component {
     }
 
     handleChanges = (newComment) => {
-        console.log(newComment)
+
 
         const alteredComments = this.state.comments
         alteredComments.push(newComment)

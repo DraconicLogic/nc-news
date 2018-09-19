@@ -4,22 +4,11 @@ import {Link} from 'react-router-dom'
 
 class Topics extends Component {
     state = {
-        topics: []
-    }
-    render() { console.log(this.state)
-        return (
-            <div className="topics">
-                <h1>Topics</h1>
-            <ul>
-                {this.state.topics.map((topic, index) => {
+        topics: [],
+        menuVisable: false
 
-                    
-                    return <Link key={index} to={`/ncnews/topics/${topic.slug}/articles`}><li>{topic.title}</li></Link>
-                })}
-            </ul>
-            </div>
-        );
     }
+
     componentDidMount() {
         api.getTopics()
         .then(({topics}) => {
@@ -28,6 +17,45 @@ class Topics extends Component {
             })
         })
     }
+
+
+
+    render() { 
+        const { topics, menuVisable } = this.state
+        console.log(topics)
+
+        return (
+            <div>
+                <button onClick={this.openDropdown}>Show Topics</button>
+
+                {menuVisable ? <div id="topics" className="topics-hidden">
+
+                    <ul id="topics-list">
+
+                        {topics.map((topic, index) => {
+                            return (<Link title={topic.title} key={index} to={`/ncnews/topics/${topic.slug}/articles`}><li className="topic-item">{topic.title}</li></Link>)
+                        })}
+                    </ul>
+                </div> : null}
+            </div>
+        );
+    }
+
+    openDropdown = () => {
+        if (this.state.menuVisable === true) {
+            this.closeDropdown()
+        } else {
+            this.setState({
+                menuVisable: true
+            },() => {document.addEventListener('click', this.closeDropdown)})
+        }
+    }
+    closeDropdown = () => {
+        this.setState({
+            menuVisable: false
+        },() => {document.removeEventListener('click', this.closeDropdown)})
+    }
+    
 }
 
 

@@ -6,94 +6,19 @@
 
 }
 
-#home {
-  grid-row: 2;
-}
-
-
-.content {
+#app-content {
   grid-row: 2;
   margin-left: 1in;
   margin-right: 1in;
-}
-
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
 }
 .articles {
   margin-top: 5em;
  
 }
-
-.topics {
-  text-align: left
-}
-
-#nav-links-bar {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  margin-bottom: 2in;
-  background-color: #d6baba;
-  border: #222;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  grid-row: 1
-}
-.nav-link {
-  float: left;
-  text-align: center;
-}
-.nav-link-login {
-  float: right;
-  text-align: center;
-}
-
-.nav-link a {
-  display: block;
-  text-align: center;
-  padding: 8px;
-  text-decoration: none;
-}
-.nav-link :hover{
-  background-color: maroon;
-  color: white
-}
-
-.mode-vote {
-  
-  width: 25px;
-  padding: 1em;
-
-}
-
 .comment-box {
   border: double
 }
 
-.votes {
-  float: left;
-  padding-left: 1cm
-}
-
-.login-msg {
-  color: crimson
-}
-
-#comment-box{
-  width: 80%;
-  height: 5em;
-}
 
 .cards {
   grid-column: 2;
@@ -107,8 +32,7 @@
   overflow: hidden;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   background-color: cornsilk;
-  /* margin-left: 25px;
-  margin-right: 25px; */
+
 }
 
 .card-body {
@@ -117,7 +41,6 @@
   height: 1cm;
   overflow: hidden;
   text-align: center;
-  align-self: auto;
 }
  
 .card-title {
@@ -134,30 +57,124 @@
   grid-column: 1;
   grid-row: 1;
 }
-
-.upvote {
-  background-color: darkorange;
-}
-.downvote {
-  background-color: blue;
-}
 .comments {
   overflow-y: scroll;
   height: 340px
 }
 
-.home {
-  margin-top: 5em;
+#comment-box{
+  width: 80%;
+  height: 5em;
 }
-.topics {
-  display: inline-block;
+
+.downvote {
+  background-color: blue;
 }
-.users{
-  margin-top: 5em;
+
+#home {
+  grid-row: 2;
 }
+
+h1 {
+  text-transform: capitalize;
+}
+
+.login-msg {
+  color: crimson
+}
+
 .logout-msg {
   margin-top: 50%
 }
+
+.mode-vote {
+  width: 25px;
+  padding: 1em;
+}
+
+#nav-links-bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+  margin-bottom: 2in;
+  background-color: #d6baba;
+  border: #222;
+  /* overflow: hidden; */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  grid-row: 1
+}
+
+.nav-link {
+  display: block;
+  float: left;
+  text-align: center;
+  text-decoration: none;
+  
+}
+.nav-link-login {
+  float: right;
+  text-align: center;
+}
+
+.nav-link a {
+  /* display: block; */
+  text-align: center;
+  padding: 8px;
+  text-decoration: none;
+}
+.nav-link :hover{
+  background-color: maroon;
+  color: white
+}
+
 ol {
   padding: 0;
 }
+
+#topics {
+  
+  position: absolute;
+  height: auto;
+  width: fit-content;
+  border: solid;
+  border-radius: 1em
+}
+.topics-show {
+  display: block;
+}
+
+.topics-hidden {
+  /* display: inline-block; */
+  /* display: none; */
+  background-color: #d6baba
+}
+
+.topics-hidden :hover {
+  background-color: #d6baba;
+}
+
+.topic-item {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+#topics-list {
+  list-style-type: none;
+  width: 1in;
+  padding: 0;
+}
+
+.votes {
+  float: left;
+  padding-left: 1cm
+}
+
+.upvote {
+  background-color: darkorange;
+}
+
+.users{
+  margin-top: 5em;
+}
+

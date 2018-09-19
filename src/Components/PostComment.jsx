@@ -6,8 +6,22 @@ class PostComment extends Component {
         user: {},
         body:''
     }
+
+    componentDidMount () {
+
+        
+        // if (!!this.props.user.username) {
+        //     const newUser = this.props.user
+        //     this.setState({
+        //         user: newUser
+        //     })
+        // }
+
+    }
     
     render() {
+        console.log(this.props)
+        const { user, articleid } = this.props
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -48,17 +62,7 @@ class PostComment extends Component {
             })
         }
     }
-    componentDidMount () {
-
-        
-        if (!!this.props.user.username) {
-            const newUser = this.props.user
-            this.setState({
-                user: newUser
-            })
-        }
-
-    }
+    
 }
 
 export default PostComment;

@@ -36,9 +36,7 @@ class ModVote extends Component {
                 break;
         default: break
         }
-      console.log(confirmed,'CONFIRMED DIRECTION')
-      console.log(this.state.voteChange, 'VOTE CHANGE STATE')
-      console.log(double,'DOUBLE?')
+    
         const id = this.props.id
         const url = this.props.url
 
@@ -63,7 +61,7 @@ class ModVote extends Component {
         let vote;
         if (direction === 'up') !!double ? vote = initial + 2 : vote = initial + 1
         if (direction === 'down') !!double ? vote = initial - 2 : vote = initial -1 
-        console.log(vote,' HANDLE STATE')
+
         this.setState({
             voteChange: vote
         })

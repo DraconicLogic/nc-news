@@ -9,7 +9,18 @@ class Articles extends Component {
     state = {
         articles: []
     }
-    render() { console.log(this.props)
+
+    componentDidMount () {
+
+        api.getArticles()
+        .then(({articles}) => {
+            this.setState({
+                articles: articles
+            })
+        })
+    }
+
+    render() { 
         return <div className="articles">
             <h1>Articles</h1>
             {this.state.articles.map((newsArticle, index) => {
@@ -31,14 +42,6 @@ class Articles extends Component {
         </div>
      
     }
-    componentDidMount () {
-
-        api.getArticles()
-        .then(({articles}) => {
-            this.setState({
-                articles: articles
-            })
-        })
-    }
+    
 }
 export default Articles;

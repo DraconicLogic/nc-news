@@ -11,7 +11,8 @@ class Article extends Component {
         comments: []
     }
 
-    render() {console.log(this.props)
+    render() {
+        console.log(this.props,'PROPS')
         return ( 
             <div>
                 <br/>
@@ -42,16 +43,7 @@ class Article extends Component {
                 comments: comments
             })
         })
-        // .then(() => {
-        //     const id = this.state.article._id
-        //     return 
-        // })
-        // .then(({comments}) => {
-        //     console.log(comments)
-        //     this.setState({
-        //     comments: comments
-        //     })
-        // })
+  
     }
 }    
 
