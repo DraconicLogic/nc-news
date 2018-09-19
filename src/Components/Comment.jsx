@@ -22,25 +22,26 @@ class Comment extends Component {
     }
 
     render() { 
-        console.log(this.props, 'PROPS')
         const { comments } = this.state
-        const { username } = (this.props.user)
+        const { user } = (this.props)
+   
+        console.log(comments,'COMMENTS')
        
         return (
             <div>
-                <PostComment articleid={this.props.articleid} user={username} newcoms={this.handleNewComments}/>
+                <PostComment articleid={this.props.articleid} user={user} newComment={this.handleNewComments}/>
                     <div className="comments"> 
                     <h1>Comments</h1>
                    
                     
                     {comments.map((comment, index) => {
 
-                    const user = comment.created_by.username
+                    const commenter = comment.created_by.username
                     return <div key={index} >
                     <ModVote votes={comment.votes} id={comment._id} url="comments"/>
-                            <p>Username: {username} - Created at: {dayjs(comment.created_at).format('DD/MM/YYYY')}</p>
+                            <p>Username: {commenter} - Created at: {dayjs(comment.created_at).format('DD/MM/YYYY')}</p>
                             <p>{comment.body}</p> 
-                            {(username === user) && <button  onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>}
+                            {(user.username === commenter) && <button  onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>}
                             <hr/>
                         </div>
                     })}

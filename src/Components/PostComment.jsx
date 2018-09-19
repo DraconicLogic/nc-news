@@ -3,25 +3,17 @@ import * as api from '../Api.js'
 
 class PostComment extends Component {
     state = {
-        user: {},
         body:''
     }
 
     componentDidMount () {
 
-        
-        // if (!!this.props.user.username) {
-        //     const newUser = this.props.user
-        //     this.setState({
-        //         user: newUser
-        //     })
-        // }
 
     }
     
     render() {
         console.log(this.props)
-        const { user, articleid } = this.props
+        const { user } = this.props
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -30,7 +22,7 @@ class PostComment extends Component {
 
                <input type="button" onClick={this.handleSubmit} value="Submit"/><br/>
 
-               {!!this.state.user._id ? <p></p> 
+               {!!user._id ? null
                : <p className="login-msg">Please login to make comment</p>}
                
                </form>
@@ -44,21 +36,22 @@ class PostComment extends Component {
         })
     }
     handleSubmit = (event) => {
-        if (!!this.state.user._id) {
+        event.preventDefault()
+        const { user, articleid, newComment } = this.props
+        if (!!user._id) {
             const comment = 
             {
                 body: this.state.body,
-                belongs_to: this.props.articleid,
-                created_by: this.state.user._id
+                belongs_to: articleid,
+                created_by: user._id
             }
-            event.preventDefault()
-        
+            
             api.postComment(comment)
             .then(({comment}) => {
-                this.props.newcoms(comment)
                 this.setState({
                     body: ''
                 })
+                newComment(comment)
             })
         }
     }
