@@ -49,9 +49,8 @@ class ModVote extends Component {
 
         this.handleState(confirmed, double)
     
-        const id = this.props.id
-        const url = this.props.url
-
+        const { id, url } = this.props
+   
         //THIS VARIABLE MAKES A CALL TO API. DONT NEED THIS
         // const apiCall = api.castVote(id, confirmed, url)
         
