@@ -25,7 +25,7 @@ class Topics extends Component {
 
         return (
             <div>
-                <button onClick={this.openDropdown}>Show Topics</button>
+                <p className="nav-link" onClick={this.openDropdown}>Show Topics</p>
 
                 {menuVisable ? <div id="topics" className="topics-hidden">
 

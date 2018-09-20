@@ -11,7 +11,8 @@ class Home extends Component {
         const { articles } = this.state
         return (
             <div id="home">
-                <h1>NC NEWS</h1>
+                <h1 id='title'>NC NEWS</h1>
+                <img id="nc-header"src="https://northcoders.com/images/logos/learn_to_code_manchester_original_second.png" alt="Northcoders header"/>
                 <h3>More impartial than the BBC</h3>
                 
                 <h2>Top 5 articles</h2>

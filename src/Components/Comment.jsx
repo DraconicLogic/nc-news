@@ -15,7 +15,7 @@ class Comment extends Component {
             this.setState({
                 comments: newComments
             },() => {
-                this.scrollToBottem()
+                // this.scrollToBottem()
             })
             
         }

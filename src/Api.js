@@ -78,8 +78,6 @@ export const getUserByID = (id) => {
     .then(buffer => buffer.json())
 }
 export const deleteComment = (id) => { 
-    // return fetch(`${DB_URL}/comments/${id}`)
-    // .then(buffer => buffer.json())
     const url = `${DB_URL}/comments/${id}`
 
     return deleteData(url)

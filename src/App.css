@@ -1,8 +1,9 @@
 #App {
   display: grid;
   text-align: center;
-  
   grid-template-rows: 5em 1fr;
+  /* font-family: 'Yanone Kaffeesatz'; */
+  font-family: sans-serif;
 
 }
 
@@ -83,8 +84,21 @@ h1 {
   color: crimson
 }
 
+#logged-in {
+  margin: 5px;
+}
+
 .logout-msg {
   margin-top: 50%
+}
+
+#logo {
+  height: 5em;
+  width: 5em;
+  border-left: solid;
+  border-right: solid;
+  grid-column: 1;
+  
 }
 
 .mode-vote {
@@ -92,28 +106,42 @@ h1 {
   padding: 1em;
 }
 
-#nav-links-bar {
-  list-style-type: none;
-  margin: 0;
-  padding: 10px;
-  margin-bottom: 2in;
-  background-color: #d6baba;
-  border: #222;
-  /* overflow: hidden; */
+#nav-bar-container {
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 4.5em 1fr;
+  grid-template-rows: 2.5em 2.5em;
+  background-color: cornsilk;
   position: fixed;
   top: 0;
   width: 100%;
-  grid-row: 1
+  height: 5em;
+  border-bottom: solid;
+  border-top: solid;
+  overflow: hidden;
+  /* margin-bottom: 2in; */
+}
+
+#nav-links-bar {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+  
+  grid-column: 2;
 }
 
 .nav-link {
-  display: block;
+  /* display: block; */
   float: left;
   text-align: center;
   text-decoration: none;
+  margin: 0;
+  padding: 0;
   
 }
 .nav-link-login {
+  display: block;
   float: right;
   text-align: center;
 }
@@ -125,12 +153,21 @@ h1 {
   text-decoration: none;
 }
 .nav-link :hover{
-  background-color: maroon;
+  background-color: #C31432;
   color: white
+}
+
+#nc-header {
+  height: 15em;
+  width: auto;
 }
 
 ol {
   padding: 0;
+}
+
+#title {
+  font-family: 
 }
 
 #topics {
