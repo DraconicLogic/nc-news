@@ -12,13 +12,12 @@ class PostComment extends Component {
     }
     
     render() {
-        console.log(this.props)
         const { user } = this.props
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
 
-               <input placeholder="Make a comment" onChange={this.handleText} type="text" name="comment" id="comment-box"/> 
+               <input ref="textInput" placeholder="Make a comment" onChange={this.handleText} type="text" name="comment" id="comment-box"/> 
 
                <input type="button" onClick={this.handleSubmit} value="Submit"/><br/>
 
@@ -48,10 +47,13 @@ class PostComment extends Component {
             
             api.postComment(comment)
             .then(({comment}) => {
+                this.refs.textInput.value = '';
+                newComment(comment)
+
+
                 this.setState({
                     body: ''
                 })
-                newComment(comment)
             })
         }
     }

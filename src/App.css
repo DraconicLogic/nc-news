@@ -57,7 +57,7 @@
   grid-column: 1;
   grid-row: 1;
 }
-.comments {
+#comments {
   overflow-y: scroll;
   height: 340px
 }
@@ -148,11 +148,12 @@ ol {
 .topics-hidden {
   /* display: inline-block; */
   /* display: none; */
-  background-color: #d6baba
+  background-color: #d6baba;
+  border: solid;
 }
 
 .topics-hidden :hover {
-  background-color: #d6baba;
+  
 }
 
 .topic-item {

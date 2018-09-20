@@ -10,69 +10,74 @@ class Comment extends Component {
     }
 
     componentDidUpdate(prevProps, prevState){
-           
-
         if (prevProps.comments.length !== this.props.comments.length) {
             const newComments = this.props.comments
             this.setState({
                 comments: newComments
+            },() => {
+                this.scrollToBottem()
             })
+            
         }
 
     }
 
     render() { 
         const { comments } = this.state
-        const { user } = (this.props)
-   
-        console.log(comments,'COMMENTS')
-       
+        const { user, articleid } = (this.props) 
+        console.log(this.props)      
         return (
-            <div>
-                <PostComment articleid={this.props.articleid} user={user} newComment={this.handleNewComments}/>
-                    <div className="comments"> 
-                    <h1>Comments</h1>
-                   
-                    
-                    {comments.map((comment, index) => {
+        <div>
+            <PostComment articleid={articleid} user={user} newComment={this.handleNewComments}/>
 
-                    const commenter = comment.created_by.username
-                    return <div key={index} >
+            <div id="comments" ref="comments"> 
+                <h1>Comments</h1>
+                {comments.map((comment, index) => {
+
+                const commenter = comment.created_by.username
+                return (
+                <div key={index} >
+
                     <ModVote votes={comment.votes} id={comment._id} url="comments"/>
-                            <p>Username: {commenter} - Created at: {dayjs(comment.created_at).format('DD/MM/YYYY')}</p>
-                            <p>{comment.body}</p> 
-                            {(user.username === commenter) && <button  onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>}
-                            <hr/>
-                        </div>
-                    })}
-                  </div>  
-            </div>
+
+                    <p>Username: {commenter} - Created at: {dayjs(comment.created_at).format('DD/MM/YYYY')}</p>
+
+                    <p>{comment.body}</p> 
+
+                    {/* render the delete button if the logged in user made the comment */}
+                    {(user.username === commenter) && <button  onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>}
+
+                    <hr/>
+                </div>
+                );
+                })}
+            </div>  
+        </div>
         );
     }     
         
     handlDeleteComment = (id) => {
+        const { comments } = this.state
       
         api.deleteComment(id)
         .then(({comment}) => {
 
-            const copyComments = [...this.state.comments]
-            const modComments = copyComments.filter((coms) => {
-                return coms._id !== comment._id
+            const alteredComments = comments.filter((note) => {
+                return note._id !== comment._id
             })
-  
+
             this.setState({
-                comments: modComments
+                comments: alteredComments
             })
         })
     }
 
     handleNewComments = (newComment) => {
-
-        const copyComments = [...this.state.comments]
-        const modComments = [...copyComments, newComment]
-
+        //IS THIS BROKEN??
+        const alteredComments = [...this.state.comments, newComment]
+        
         this.setState({
-            comments: modComments
+            comments: alteredComments
         })
     }
 
@@ -85,6 +90,12 @@ class Comment extends Component {
         this.setState({
             comments: alteredComments
         })
+    }
+
+    scrollToBottem = () => {
+        // NOT FINISHED
+        console.log('SCROLLING FUNCTION')
+        this.refs.comments.scrollIntoView()
     }
 }
 
