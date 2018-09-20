@@ -6,55 +6,63 @@ class ModVote extends Component {
         voteChange: 0
     }
     render() {
+        const { voteChange } = this.state
+        const { votes } = this.props
         return (
-            <div className="mode-vote">
+        <div className="mode-vote">
 
-            <button className={this.state.voteChange > 0 ? "upvote" : "neutral"} onClick={() => this.vote('up')}>&#8679;</button>
-            {this.props.votes + this.state.voteChange}
-            <button className={this.state.voteChange < 0 ? "downvote" : "neutral"} onClick={() => this.vote('down')}>&#8681;</button>
+            <button className={voteChange > 0 ? "upvote" : "neutral"} 
+            onClick={() => this.vote('up')}>
+                &#8679;
+            </button>
+
+            {votes + voteChange}
+
+            <button className={voteChange < 0 ? "downvote" : "neutral"}
+            onClick={() => this.vote('down')}>
+                &#8681;
+            </button>
         </div>
         );
     }
-     vote = (direction) => {
+    vote = (direction) => {
+        const { voteChange } = this.state
 
         let confirmed = direction
         let double = false
         switch (direction) {
             case 'up': 
                 //if already up voted make request for downvote
-                if (this.state.voteChange > 0) confirmed = 'down';
-
+                if (voteChange > 0) confirmed = 'down';
                 // if already downvoted make 2 requests for upvote
-                if (this.state.voteChange < 0) double = true;
+                if (voteChange < 0) double = true;
                 break;
             case 'down':
                 //if already down voted make request for upvote
-                if (this.state.voteChange < 0) confirmed = 'up';
+                if (voteChange < 0) confirmed = 'up';
 
                 //if already upvoted make 2 requests for downvote
-                if (this.state.voteChange > 0) double = true;
+                if (voteChange > 0) double = true;
                 break;
         default: break
         }
+
+        this.handleState(confirmed, double)
     
         const id = this.props.id
         const url = this.props.url
 
+        //THIS VARIABLE MAKES A CALL TO API. DONT NEED THIS
         const apiCall = api.castVote(id, confirmed, url)
         
-         if (!!double) {
-             Promise.all([apiCall,apiCall])
-             .then(()=>{
-                 this.handleState(confirmed, true)
-             })
+        //  if (double === true) {
+        //      Promise.all([apiCall,apiCall])
+            
 
-         } else {
-             api.castVote(id, confirmed, url)
-         .then(()=> {
-             this.handleState(confirmed, false)
-         })
-         }   
-     }
+        //  } else {
+        //      api.castVote(id, confirmed, url)
+        //  }   
+    }
 
     handleState = (direction, double) => {
         let initial = this.state.voteChange
@@ -66,13 +74,7 @@ class ModVote extends Component {
             voteChange: vote
         })
     }
-    componentDidUpdate() {
 
-
-    }
-    componentDidMount() {
-     
-    }
 }
 
 export default ModVote;

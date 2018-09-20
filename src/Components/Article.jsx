@@ -12,7 +12,6 @@ class Article extends Component {
     }
 
     render() {
-        console.log(this.props,'PROPS')
         return ( 
             <div>
                 <br/>

@@ -24,8 +24,7 @@ class Comment extends Component {
 
     render() { 
         const { comments } = this.state
-        const { user, articleid } = (this.props) 
-        console.log(this.props)      
+        const { user, articleid } = (this.props)      
         return (
         <div>
             <PostComment articleid={articleid} user={user} newComment={this.handleNewComments}/>
@@ -75,14 +74,14 @@ class Comment extends Component {
     handleNewComments = (newComment) => {
         //IS THIS BROKEN??
         const alteredComments = [...this.state.comments, newComment]
-        
+
         this.setState({
             comments: alteredComments
         })
     }
 
     handleChanges = (newComment) => {
-
+        //need to question this area
 
         const alteredComments = this.state.comments
         alteredComments.push(newComment)

@@ -22,7 +22,6 @@ class Topics extends Component {
 
     render() { 
         const { topics, menuVisable } = this.state
-        console.log(topics)
 
         return (
             <div>

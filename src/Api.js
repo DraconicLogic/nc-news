@@ -53,7 +53,9 @@ export const getCommentsByID = (id) => {
 
 export const castVote = (id, direction, url) => {
     return fetch(`${DB_URL}/${url}/${id}?vote=${direction}`, {method: 'PUT'})
-    .then(buffer => buffer.json())
+    .then((buffer) => {
+        console.log(buffer,'WHAT IS THIS??')
+        buffer.json()})
 
 }
 export const getTopics = () => {
