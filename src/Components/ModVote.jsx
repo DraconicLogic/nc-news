@@ -53,15 +53,18 @@ class ModVote extends Component {
         const url = this.props.url
 
         //THIS VARIABLE MAKES A CALL TO API. DONT NEED THIS
-        const apiCall = api.castVote(id, confirmed, url)
+        // const apiCall = api.castVote(id, confirmed, url)
         
-        //  if (double === true) {
-        //      Promise.all([apiCall,apiCall])
-            
-
-        //  } else {
-        //      api.castVote(id, confirmed, url)
-        //  }   
+         if (double === true) {
+            Promise.all(
+                [
+                    api.castVote(id, confirmed, url),
+                    api.castVote(id, confirmed, url)
+                ]
+            )
+         } else {
+             api.castVote(id, confirmed, url)
+         }   
     }
 
     handleState = (direction, double) => {
