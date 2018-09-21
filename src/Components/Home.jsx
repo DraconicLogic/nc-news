@@ -11,8 +11,10 @@ class Home extends Component {
         const { articles } = this.state
         return (
             <div id="home">
-                <h1 id='title'>NC NEWS</h1>
-                <img id="nc-header"src="https://northcoders.com/images/logos/learn_to_code_manchester_original_second.png" alt="Northcoders header"/>
+                <div id="title-div">
+                    <img className="title-item" id="nc-header"src="https://northcoders.com/images/logos/learn_to_code_manchester_original_second.png" alt="Northcoders header"/>
+                    <h1 className="title-item" id='title' >NEWS</h1>
+                </div>
                 <h3>More impartial than the BBC</h3>
                 
                 <h2>Top 5 articles</h2>
@@ -22,7 +24,7 @@ class Home extends Component {
                    return (
                    <div className="cards" key={index} >
                     <div className="card-title">
-                        <Link to={`/ncnews/articles/${newsArticle._id}`}><h3 >{newsArticle.title}</h3></Link>
+                        <Link to={`/ncnews/articles/${newsArticle._id}`}><h3 className="article-title">{newsArticle.title}</h3></Link>
                     </div>
                    <ModVote className="card-vote" id={newsArticle._id} votes={newsArticle.votes} url="articles"/>
    

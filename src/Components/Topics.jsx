@@ -22,17 +22,20 @@ class Topics extends Component {
 
     render() { 
         const { topics, menuVisable } = this.state
-
         return (
             <div>
                 <p className="nav-link" onClick={this.openDropdown}>Show Topics</p>
 
-                {menuVisable ? <div id="topics" className="topics-hidden">
-
+                {menuVisable ? 
+                <div id="topics" className="topics-hidden">
                     <ul id="topics-list">
 
                         {topics.map((topic, index) => {
-                            return (<Link title={topic.title} key={index} to={`/ncnews/topics/${topic.slug}/articles`}><li className="topic-item">{topic.title}</li></Link>)
+                            return (
+                            <Link title={topic.title} key={index} to={`/ncnews/topics/${topic.slug}/articles`}>
+                            <li className="topic-item"><strong>{topic.title}</strong></li>
+                            </Link>
+                            )
                         })}
                     </ul>
                 </div> : null}

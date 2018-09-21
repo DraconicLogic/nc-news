@@ -3,6 +3,7 @@ import PostComment from './PostComment'
 import * as api from '../Api.js'
 import ModVote from './ModVote'
 import dayjs from 'dayjs'
+import PropTypes from 'prop-types'
 
 class Comment extends Component {
     state = {
@@ -27,7 +28,7 @@ class Comment extends Component {
         const { user, articleid } = (this.props)      
         return (
         <div>
-            <PostComment articleid={articleid} user={user} newComment={this.handleNewComments}/>
+            <PostComment articleid={articleid} user={user} newComment={this.newComment}/>
 
             <div id="comments" ref="comments"> 
                 <h1>Comments</h1>
@@ -71,21 +72,9 @@ class Comment extends Component {
         })
     }
 
-    handleNewComments = (newComment) => {
-        //IS THIS BROKEN??
-        const alteredComments = [...this.state.comments, newComment]
+    newComment = (newComment) => {
+        const alteredComments = [newComment,...this.state.comments]
 
-        this.setState({
-            comments: alteredComments
-        })
-    }
-
-    handleChanges = (newComment) => {
-        //need to question this area
-
-        const alteredComments = this.state.comments
-        alteredComments.push(newComment)
-    
         this.setState({
             comments: alteredComments
         })
@@ -98,4 +87,7 @@ class Comment extends Component {
     }
 }
 
+Comment.propTypes = {
+    user: PropTypes.object.isRequired
+ };
 export default Comment;

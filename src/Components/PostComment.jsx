@@ -6,13 +6,10 @@ class PostComment extends Component {
         body:''
     }
 
-    componentDidMount () {
-
-
-    }
     
     render() {
         const { user } = this.props
+        
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -37,10 +34,11 @@ class PostComment extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         const { user, articleid, newComment } = this.props
-        if (!!user._id) {
+        const { body } = this.state
+        if (!!user._id && body.length > 0) {
             const comment = 
             {
-                body: this.state.body,
+                body: body,
                 belongs_to: articleid,
                 created_by: user._id
             }

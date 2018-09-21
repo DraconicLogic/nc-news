@@ -43,7 +43,19 @@ export const getArticles = () => {
 
 export const getArticleByID = (id) => {
     return fetch(`${DB_URL}/articles/${id}`)
-    .then(buffer => buffer.json())
+    .then((buffer) => {
+        console.log(buffer)
+        console.log(buffer.status)
+        if (buffer.status !== 200) {
+            throw { status: buffer.status, msg: buffer.statusText }
+        } else {
+        return buffer.json()
+    }
+    })
+    // .catch((error) => {
+    //     console.log(error)
+    //     return error
+    // })
 }
 
 export const getCommentsByID = (id) => {
@@ -54,7 +66,6 @@ export const getCommentsByID = (id) => {
 export const castVote = (id, direction, url) => {
     return fetch(`${DB_URL}/${url}/${id}?vote=${direction}`, {method: 'PUT'})
     .then((buffer) => {
-        console.log(buffer,'WHAT IS THIS??')
         buffer.json()})
 
 }

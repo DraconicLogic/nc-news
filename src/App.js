@@ -9,6 +9,7 @@ import Home from './Components/Home'
 import Users from './Components/Users'
 import * as api from './Api.js'
 import Logout from './Components/Logout'
+import ErrorPage from './Components/ErrorPage.jsx'
 
 class App extends Component {
   state = {
@@ -34,6 +35,8 @@ class App extends Component {
         <Route exact path="/ncnews/articles/:articleid"
         render={(params) => <Article id={params} user={user} />} />
         <Route exact path="/ncnews/topics/:topic_slug/articles" component={TopicArticles}/>
+
+        <Route exact path="/error" component={ErrorPage}/>
         </div>
       </div>
     );

@@ -27,7 +27,7 @@ class Articles extends Component {
                
                 return (<div className="cards" key={index} >
                 <div className="card-title">
-                <Link to={`/ncnews/articles/${newsArticle._id}`}><h3 >{newsArticle.title}</h3></Link>
+                <Link to={`/ncnews/articles/${newsArticle._id}`}><h3 className='article-title'>{newsArticle.title}</h3></Link>
                 </div>
                 <ModVote className="card-vote" id={newsArticle._id} votes={newsArticle.votes} url="articles"/>
 

@@ -16,7 +16,9 @@ class ModVote extends Component {
                 &#8679;
             </button>
 
-            {votes + voteChange}
+            <p className="vote-num">
+            <strong>{votes + voteChange}</strong>
+            </p>
 
             <button className={voteChange < 0 ? "downvote" : "neutral"}
             onClick={() => this.vote('down')}>
