@@ -55,7 +55,6 @@ class Article extends Component {
         console.log(this.state.err)
         const { article, comments, err } = this.state
         const { user } = this.props
-        const { articleid } = this.props.id.match.params
         if (err) return <Redirect to={
             {
                 pathname: "/error",

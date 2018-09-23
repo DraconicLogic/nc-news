@@ -22,7 +22,10 @@ const NavBar = ({ user, logout }) => {
                 {!!user.name ? 
                 <li className="nav-link-login">
                 {user.avatar && <img id="user-avatar" src={user.avater_url} alt="user avatar"/>}
-                <p id="logged-in">Logged in as {user.username}</p> <button onClick={logout}>Log Out</button>
+                <p id="logged-in">Logged in as {user.username}</p>
+                <Link to={"/ncnews/logout"}>
+                <button onClick={logout}>Log Out</button>
+                </Link>
                 </li> :
                 <li className="nav-link-login"><Link to={"/ncnews/users"}>Users</Link></li>} 
 
@@ -32,7 +35,8 @@ const NavBar = ({ user, logout }) => {
 };
 
 NavBar.propTypes = {
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    logout: PropTypes.object.isRequired
 }
 
 export default NavBar;

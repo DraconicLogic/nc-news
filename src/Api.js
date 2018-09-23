@@ -34,6 +34,12 @@ function deleteData(url) {
    return response.json()})
 }
 
+const withErrorHandling = (func) => {
+    return function (...args) {
+        return func(...args).catch(err => ({err}))
+    }
+}
+
 
 
 export const getArticles = () => {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../Api.js'
+import PropTypes from 'prop-types'
 
 class PostComment extends Component {
     state = {
@@ -57,5 +58,11 @@ class PostComment extends Component {
     }
     
 }
+
+PostComment.propTypes = {
+    user: PropTypes.object.isRequired,
+    articleid: PropTypes.string.isRequired,
+    newComment: PropTypes.object.isRequired
+ };
 
 export default PostComment;

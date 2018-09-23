@@ -29,8 +29,11 @@ class App extends Component {
         <Route exact path="/ncnews" component={Home}/>
 
         <Route exact path="/ncnews/articles" component={Articles} />
-        <Route exact path="/ncnews/users" render={() => <Users login={this.handleLogin}/>} />
+
+        <Route exact path="/ncnews/users" render={(params) => <Users login={this.handleLogin} user={user} params={params}/>} />
+        
         <Route exact path="/ncnews/logout" component={Logout}/>
+
 
         <Route exact path="/ncnews/articles/:articleid"
         render={(params) => <Article id={params} user={user} />} />
@@ -48,6 +51,8 @@ class App extends Component {
        const newUser = {...user}
        this.setState({
          user: newUser
+       },() => {
+
        })
      }) 
   }

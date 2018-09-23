@@ -7,6 +7,20 @@ class Home extends Component {
     state = {
         articles: []
     }
+
+    componentDidMount() {
+        api.getArticles()
+        .then(({articles}) => {
+            articles.sort((a, b) => {
+                return (b.votes - a.votes)
+            })
+            const topFive = articles.slice(0,5)
+            this.setState({
+                articles: topFive
+            })
+        })
+    }
+    
     render() {
         const { articles } = this.state
         return (
@@ -14,11 +28,12 @@ class Home extends Component {
                 <div id="title-div">
                     <img className="title-item" id="nc-header"src="https://northcoders.com/images/logos/learn_to_code_manchester_original_second.png" alt="Northcoders header"/>
                     <h1 className="title-item" id='title' >NEWS</h1>
+                    <h3>The REAL front page of the internet</h3>
+                    <h2>Top 5 articles</h2>
                 </div>
-                <h3>More impartial than the BBC</h3>
                 
-                <h2>Top 5 articles</h2>
-                <ol id="top5">
+                
+                <div className="articles">
                 {articles.map((newsArticle, index) => {
                    
                    return (
@@ -35,22 +50,11 @@ class Home extends Component {
                    </div>
                    )
                 })}
-                </ol>
+                </div>
             </div>
         );
     }
-    componentDidMount() {
-        api.getArticles()
-        .then(({articles}) => {
-            articles.sort((a, b) => {
-                return (b.votes - a.votes)
-            })
-            const topFive = articles.slice(0,5)
-            this.setState({
-                articles: topFive
-            })
-        })
-    }
+    
 }
 
 export default Home;

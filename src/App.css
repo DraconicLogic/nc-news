@@ -9,11 +9,12 @@
 
 #app-content {
   grid-row: 2;
-  margin-left: 1in;
-  margin-right: 1in;
+  /* margin-left: 1in;
+  margin-right: 1in; */
 }
 .articles {
   margin-top: 5em;
+  grid-column: 2;
 }
 
 .article-title {
@@ -35,6 +36,9 @@
   grid-template-columns: 1fr 4fr 1fr;
   grid-template-rows: 1fr 1fr;
   height: 2in;
+  width: 40%;
+  left: 50%;
+
   border: solid;
   border-radius: 1em;
   margin-bottom: 0.5cm;
@@ -93,6 +97,8 @@
 
 #home {
   grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr)
 }
 
 h1 {
@@ -123,7 +129,9 @@ h1 {
 .mode-vote {
   width: 25px;
   padding: 1em;
- 
+  background-color: #C31432;
+  border-radius: 1em
+ ;
 }
 
 #nav-bar-container {
@@ -188,7 +196,7 @@ ol {
 }
 
 #title-div {
-  
+  grid-column: 2;
 }
 #title {
   font-family: Arial, Helvetica, sans-serif;
