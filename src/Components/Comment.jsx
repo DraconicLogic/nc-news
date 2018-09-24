@@ -15,8 +15,6 @@ class Comment extends Component {
             const newComments = this.props.comments
             this.setState({
                 comments: newComments
-            },() => {
-                // this.scrollToBottem()
             })
             
         }
@@ -80,15 +78,10 @@ class Comment extends Component {
         })
     }
 
-    scrollToBottem = () => {
-        // NOT FINISHED
-        console.log('SCROLLING FUNCTION')
-        this.refs.comments.scrollIntoView()
-    }
 }
 
 Comment.propTypes = {
     user: PropTypes.object.isRequired,
-    
+
  };
 export default Comment;

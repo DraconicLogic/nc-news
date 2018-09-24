@@ -9,7 +9,7 @@ const ErrorPage = ({location: {state}}) => {
       {state.err.status} <br/>
       {state.err.msg} <br/>
 
-      <Link to={state.from}>FLY YOU FOOLS</Link>
+      <Link to={state.from}>RETURN FROM WHENCE YOU CAME</Link>
       
 
     </div>

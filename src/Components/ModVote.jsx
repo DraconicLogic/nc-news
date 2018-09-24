@@ -82,8 +82,8 @@ class ModVote extends Component {
 
 }
 ModVote.propTypes = {
-    id: PropTypes.string.isRequired,
-    votes: PropTypes.number.isRequired
+    id: PropTypes.string,
+    votes: PropTypes.number
  };
 
 export default ModVote;

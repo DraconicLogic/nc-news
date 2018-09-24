@@ -4,7 +4,6 @@ import Topics from './Topics';
 import PropTypes from 'prop-types'
 
 const NavBar = ({ user, logout }) => {
-
     return (
         <div id="nav-bar-container"> 
 
@@ -36,7 +35,7 @@ const NavBar = ({ user, logout }) => {
 
 NavBar.propTypes = {
     user: PropTypes.object.isRequired,
-    logout: PropTypes.object.isRequired
+    logout: PropTypes.function
 }
 
 export default NavBar;

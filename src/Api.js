@@ -34,10 +34,16 @@ function deleteData(url) {
    return response.json()})
 }
 
-const withErrorHandling = (func) => {
+//could not get this working
+const withErrorHandling = (apiFunc) => {
     return function (...args) {
-        return func(...args).catch(err => ({err}))
+        return apiFunc(...args).catch((err) => 
+        console.log(err)      
+        // ({err})
+        )
+        
     }
+    
 }
 
 
@@ -47,22 +53,13 @@ export const getArticles = () => {
     .then(buffer => buffer.json())
 }
 
-export const getArticleByID = (id) => {
+export const getArticleByID = 
+withErrorHandling((id) => {
+    
     return fetch(`${DB_URL}/articles/${id}`)
-    .then((buffer) => {
-        console.log(buffer)
-        console.log(buffer.status)
-        if (buffer.status !== 200) {
-            throw { status: buffer.status, msg: buffer.statusText }
-        } else {
-        return buffer.json()
-    }
-    })
-    // .catch((error) => {
-    //     console.log(error)
-    //     return error
-    // })
-}
+    .then((buffer) => buffer.json())
+})
+    
 
 export const getCommentsByID = (id) => {
     return fetch(`${DB_URL}/articles/${id}/comments`)

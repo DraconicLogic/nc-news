@@ -20,7 +20,6 @@ class App extends Component {
 
   render() {
     const { user } = this.state
-    console.log(user)
     return (
       <div id="App">
         <NavBar user={user} logout={this.handleLogOut}/>
@@ -31,7 +30,7 @@ class App extends Component {
         <Route exact path="/ncnews/articles" component={Articles} />
 
         <Route exact path="/ncnews/users" render={(params) => <Users login={this.handleLogin} user={user} params={params}/>} />
-        
+
         <Route exact path="/ncnews/logout" component={Logout}/>
 
 

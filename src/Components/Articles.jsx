@@ -22,7 +22,7 @@ class Articles extends Component {
 
     render() { 
         return <div className="articles">
-            <h1>Articles</h1>
+            <h1 id="article-header">Articles</h1>
             {this.state.articles.map((newsArticle, index) => {
                
                 return (<div className="cards" key={index} >

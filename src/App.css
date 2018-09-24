@@ -15,6 +15,12 @@
 .articles {
   margin-top: 5em;
   grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#article-header {
+  grid-column: 2;
 }
 
 .article-title {
@@ -36,7 +42,7 @@
   grid-template-columns: 1fr 4fr 1fr;
   grid-template-rows: 1fr 1fr;
   height: 2in;
-  width: 40%;
+  
   left: 50%;
 
   border: solid;
@@ -98,7 +104,7 @@
 #home {
   grid-row: 2;
   display: grid;
-  grid-template-columns: repeat(3, 1fr)
+  grid-template-columns: repeat(3, 1fr);
 }
 
 h1 {
@@ -138,8 +144,8 @@ h1 {
   grid-row: 1;
   display: grid;
   grid-template-columns: 5em 1fr;
-  grid-template-rows: 2.5em 2.5em;
-  background-color: cornsilk;
+  /* grid-template-rows: 2.5em 2.5em; */
+  background-color: #C31432;
   position: fixed;
   top: 0;
   width: 100%;
@@ -165,8 +171,13 @@ h1 {
   text-align: center;
   text-decoration: none;
   margin: 0;
+  color: #FFFFFF
   /* padding: 0; */
   
+}
+
+.nav-link:visited {
+  color: #FFFFFF;
 }
 .nav-link-login {
   display: block;
