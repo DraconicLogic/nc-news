@@ -4,11 +4,14 @@
 
 This front end project is an implementation of a reddit like website, where users can read,create and vote on articles. They can also make comments and vote on those as well.
 
+It is hosted at [https://frontendncnews.herokuapp.com/ncnews/](https://frontendncnews.herokuapp.com/ncnews/)
+
+
+
 The data for this project is served from the [Northcoders News API](https://github.com/DraconicLogic/BE2-northcoders-news) 
 
-It is hosted at [https://frontendncnews.herokuapp.com/](https://frontendncnews.herokuapp.com/)
 
-use [https://frontendncnews.herokuapp.com/api](https://frontendncnews.herokuapp.com/api) to read documentation about the types of data that it served.
+use [https://draconiclogic-nc-news.herokuapp.com/api](https://draconiclogic-nc-news.herokuapp.com/) to read documentation about the  data served.
 
 ### Built With
 
