@@ -21,21 +21,8 @@ class Article extends Component {
         const article = api.getArticleByID(articleid)
         const comments = api.getCommentsByID(articleid)
         
-        Promise.all([article,comments])
-        .catch((err) => {
-            //Atempt to catch error
-            console.log(err)
-        })
-        .then(([{article}, {comments}]) => {
-            // Stop-gap till error handling is properly configured
-            if (!article && !comments) {
-
-                return this.setState({
-                    err: 'error'
-                })
-            }
-
-
+        Promise.all([ article, comments ])
+        .then(([ article, {comments}]) => {
             comments.sort((a, b) => {
                 return new Date(b.created_at) - new Date (a.created_at)
             })
@@ -44,15 +31,10 @@ class Article extends Component {
                 comments: comments
             })
         })
-        .catch((error) => {
-            //Attempt to catch error
-            console.log(error)
-            this.setState({
-                err: error
-            })
-
+        .catch((err) => {
+            //Atempt to catch error
+            console.log(err)
         })
-  
     }
    
 

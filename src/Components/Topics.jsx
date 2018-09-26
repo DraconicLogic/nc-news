@@ -18,8 +18,6 @@ class Topics extends Component {
         })
     }
 
-
-
     render() { 
         const { topics, menuVisable } = this.state
         return (

@@ -16,7 +16,7 @@
   margin-top: 5em;
   grid-column: 2;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 2fr 1fr;
 }
 
 #article-header {
@@ -103,8 +103,6 @@
 
 #home {
   grid-row: 2;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
 }
 
 h1 {

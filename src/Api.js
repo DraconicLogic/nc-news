@@ -1,34 +1,25 @@
-const DB_URL = 'https://draconiclogic-nc-news.herokuapp.com/api'
+const DB_URL = 'https://draconiclogic-nc-news.herokuapp.com/api';
 
 
-function postData(url, data) {
-    return fetch(url, {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "omit", 
-        headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            },
-        redirect: "follow", 
-        referrer: "no-referrer",
-        body: JSON.stringify(data)
-    })
-    .then((response) => {
-   return response.json()})
-}
+const postData = (url, data) => {
+	return fetch(url, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json; charset=utf-8",
+		},
+		body: JSON.stringify(data)
+	})
+		.then((response) => {
+			return response.json();
+		});
+};
 
-function deleteData(url) {
+const deleteData = (url) => {
     return fetch(url, {
         method: "DELETE",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "omit", 
         headers: {
             "Content-Type": "application/json; charset=utf-8",
-            },
-        redirect: "follow", 
-        referrer: "no-referrer",
+            }
     })
     .then((response) => {
    return response.json()})
@@ -37,10 +28,7 @@ function deleteData(url) {
 //could not get this working
 const withErrorHandling = (apiFunc) => {
     return function (...args) {
-        return apiFunc(...args).catch((err) => 
-        console.log(err)      
-        // ({err})
-        )
+        return apiFunc(...args).catch(console.log)
         
     }
     
@@ -53,12 +41,16 @@ export const getArticles = () => {
     .then(buffer => buffer.json())
 }
 
-export const getArticleByID = 
-withErrorHandling((id) => {
-    
+export const getArticleByID = (id) => {
     return fetch(`${DB_URL}/articles/${id}`)
-    .then((buffer) => buffer.json())
-})
+    .then((buffer) => {
+        if (buffer.status !== 200) {
+            throw { status: buffer.status, msg: buffer.statusText }
+        } else {
+            return buffer.json()
+        }
+    }).then(({ article }) => article)
+}
     
 
 export const getCommentsByID = (id) => {
