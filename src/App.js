@@ -6,10 +6,11 @@ import Article from './Components/Article.jsx'
 import TopicArticles from './Components/TopicArticles.jsx'
 import NavBar from './Components/NavBar'
 import Home from './Components/Home'
-import Users from './Components/Users'
+import Login from './Components/Login'
 import * as api from './Api.js'
 import Logout from './Components/Logout'
 import ErrorPage from './Components/ErrorPage.jsx'
+import PostArticle from './Components/PostArticle';
 
 class App extends Component {
   state = {
@@ -23,20 +24,23 @@ class App extends Component {
     return (
       <div id="App">
         <NavBar user={user} logout={this.handleLogOut}/>
+
         <div id='app-content'>
+
         <Route exact path="/" component={Home} />
-        <Route exact path="/ncnews" component={Home}/>
 
-        <Route exact path="/ncnews/articles" component={Articles} />
+        <Route exact path="/articles" component={Articles} />
 
-        <Route exact path="/ncnews/users" render={(params) => <Users login={this.handleLogin} user={user} params={params}/>} />
+        <Route path="/new-article" render={(routerProps) => <PostArticle user={user} {...routerProps}/>}/>
 
-        <Route exact path="/ncnews/logout" component={Logout}/>
+        <Route exact path="/login" render={(params) => <Login login={this.handleLogin} user={user} params={params}/>} />
+
+        <Route exact path="/logout" component={Logout}/>
 
 
-        <Route exact path="/ncnews/articles/:articleid"
+        <Route exact path="/articles/:articleid"
         render={(params) => <Article id={params} user={user} />} />
-        <Route exact path="/ncnews/topics/:topic_slug/articles" component={TopicArticles}/>
+        <Route exact path="/topics/:topic_slug/articles" component={TopicArticles}/>
 
         <Route exact path="/error" component={ErrorPage}/>
         </div>

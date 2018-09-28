@@ -15,7 +15,7 @@ class PostComment extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
 
-               <input ref="textInput" placeholder="Make a comment" onChange={this.handleText} type="text" name="comment" id="comment-box"/> 
+                <textarea ref="textInput" placeholder="Make a comment" onChange={this.handleText} name="comment" id="comment-box"/> 
 
                <input type="button" onClick={this.handleSubmit} value="Submit"/><br/>
 
