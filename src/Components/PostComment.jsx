@@ -7,31 +7,27 @@ class PostComment extends Component {
         body:''
     }
 
-    
     render() {
-        const { user } = this.props
         
+        const { user } = this.props
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-
                 <textarea ref="textInput" placeholder="Make a comment" onChange={this.handleText} name="comment" id="comment-box"/> 
-
                <input type="button" onClick={this.handleSubmit} value="Submit"/><br/>
-
                {!!user._id ? null
                : <p className="login-msg">Please login to make comment</p>}
-               
                </form>
-
             </div>
         );
     }
+
     handleText = (event) => {
         this.setState({
             body: event.target.value
         })
     }
+
     handleSubmit = (event) => {
         event.preventDefault()
         const { user, articleid, newComment } = this.props
@@ -48,8 +44,6 @@ class PostComment extends Component {
             .then(({comment}) => {
                 this.refs.textInput.value = '';
                 newComment(comment)
-
-
                 this.setState({
                     body: ''
                 })

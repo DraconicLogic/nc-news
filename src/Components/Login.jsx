@@ -8,11 +8,10 @@ class Login extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { user } = this.props;
-    if (!!user._id) return <Redirect to="/ncnews" />;
+    if (!!user._id) return <Redirect to="/" />;
     return (
-      <div className="users">
+      <div id="login">
         <form onSubmit={this.handleSubmit}>
           User name:
           <input type="text" defaultValue="cooljmessy" />
@@ -24,11 +23,12 @@ class Login extends Component {
     );
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     const { username } = this.state;
     this.props.login(username);
   };
+
 }
 Login.propTypes = {
   user: PropTypes.object.isRequired,

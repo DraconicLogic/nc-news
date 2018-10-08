@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 import * as api from '../Api.js'
-import ModVote from './ModVote'
-
-
+import ArticleCard from './ArticleCard'
 
 class Articles extends Component {
     state = {
@@ -11,37 +8,24 @@ class Articles extends Component {
     }
 
     componentDidMount () {
-
         api.getArticles()
         .then(({articles}) => {
             this.setState({
-                articles: articles
+                articles
             })
         })
     }
 
-    render() { 
+    render() {
+        const { articles } = this.state
         return <div className="articles">
             <h1 id="article-header">Articles</h1>
-            {this.state.articles.map((newsArticle, index) => {
-               
-                return (<div className="cards" key={index} >
-                <div className="card-title">
-                <Link to={`/ncnews/articles/${newsArticle._id}`}><h3 className='article-title'>{newsArticle.title}</h3></Link>
-                </div>
-                <ModVote className="card-vote" id={newsArticle._id} votes={newsArticle.votes} url="articles"/>
-
-                    <div className="card-body">{newsArticle.body}</div>
-
-                    <Link to={`/ncnews/articles/${newsArticle._id}`}>
-                    <p className="card-readmore">Read More...</p></Link>
-                </div>
+            {articles.map((newsArticle) => {
+                return (
+                    <ArticleCard article={newsArticle} key={newsArticle._id} />
                 )
             })}
-           <br/> 
-        </div>
-     
+        </div>  
     }
-    
 }
 export default Articles;

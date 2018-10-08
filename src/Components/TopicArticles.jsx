@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import * as api from '../Api.js'
-import {Link} from 'react-router-dom'
-import ModVote from './ModVote.jsx'
+import * as api from '../Api.js';
+import ArticleCard from './ArticleCard';
+import { Link } from 'react-router-dom';
 
 class TopicArticles extends Component {
     state = {
@@ -10,10 +10,12 @@ class TopicArticles extends Component {
     }
 
     componentDidMount() {
-
         const {topic_slug} = this.props.match.params
         api.getArticleByTopic(topic_slug)
         .then(({articles}) => {
+            articles.sort((a, b) => {
+                b.created_at - a.created_at
+            })
             this.setState({
                 articles: articles,
                 slug: topic_slug
@@ -22,10 +24,8 @@ class TopicArticles extends Component {
     }
 
     componentDidUpdate (prevProps) {
-
         const {topic_slug} = this.props.match.params
         if (prevProps.match.params !== this.props.match.params) {
-            
             api.getArticleByTopic(topic_slug)
             .then(({articles}) => {
             this.setState({
@@ -37,33 +37,23 @@ class TopicArticles extends Component {
     }
 
     render() { 
-        console.log(this.props,'TOPIC TITLE HERE???')
         const { articles, slug } = this.state
         return <div className="articles">
-            <h1>{slug} Articles</h1>
-            {articles.map((newsArticle, index) => {
+            <h1 className="slug">{slug} Articles</h1>
+            <Link to={{
+                pathname: '/new-article',
+                state: {
+                    slug,
+                }
+            }}> <button id="add-article">Post Article</button> </Link>
+            {articles.map((newsArticle) => {
                
-                return (<div className="cards" key={index} >
-                <div className="card-title">
-                <Link to={`/ncnews/articles/${newsArticle._id}`}><h3 >{newsArticle.title}</h3></Link>
-                </div>
-                <ModVote className="card-vote" id={newsArticle._id} votes={newsArticle.votes} url="articles"/>
-
-                    <div className="card-body">{newsArticle.body}</div>
-
-                    <Link to={`/ncnews/articles/${newsArticle._id}`}>
-                    <p className="card-readmore">Read More...</p></Link>
-                </div>
+                return (
+                    <ArticleCard article={newsArticle} key={newsArticle._id} />
                 )
             })}
-           <br/> 
-        </div>
-     
+        </div>  
     }
-
-
-    
-    
 }
 
 export default TopicArticles;

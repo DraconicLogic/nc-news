@@ -1,16 +1,20 @@
+@import url("App-background.css");
 #App {
   display: grid;
   text-align: center;
   grid-template-rows: 5em 1fr;
-  background-color: silver;
   font-family: sans-serif;
-
+  height: 100%;
 }
 
 #app-content {
   grid-row: 2;
-  /* margin-left: 1in;
-  margin-right: 1in; */
+  height: 100%;
+}
+
+article {
+  padding-left: 10em;
+  padding-right: 10em;
 }
 
 .articles {
@@ -18,6 +22,10 @@
   grid-column: 2;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
+}
+
+#article-post{
+  grid-row: 2;
 }
 
 #article-header {
@@ -32,10 +40,17 @@
   color: turquoise
 }
 
+#add-article {
+  font-size: 100%;
+}
+
+.bottom {
+  grid-row: 3;
+}
+
 .comment-box {
   border: double
 }
-
 
 .cards {
   grid-column: 2;
@@ -43,15 +58,18 @@
   grid-template-columns: 1fr 4fr 1fr;
   grid-template-rows: 1fr 1fr;
   height: 2in;
-
   left: 50%;
-
-  border: thin;
+  border: medium;
   border-radius: 1em;
   margin-bottom: 0.5cm;
   overflow: hidden;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  background-color: white;
+  background-color: whitesmoke;
+}
+
+.cards:hover{
+  background-color: peachpuff;
+  border: black;
 }
 
 .card-body {
@@ -86,6 +104,8 @@
   height: 340px
 }
 
+.comment {}
+
 #comment-box {
   width: 80%;
   height: 5em;
@@ -97,21 +117,21 @@
 
 #error {
   padding-top: 10px;
-
-
-
 }
 
 #home {
   grid-row: 2;
 }
 
-h1 {
-  text-transform: capitalize;
+#login {
+  margin-top: 5em;
+  height: 85vh;
 }
 
 .login-msg {
-  color: crimson
+  color: crimson;
+  font-weight: bolder;
+  /* grid-row: 1; */
 }
 
 #logged-in {
@@ -128,21 +148,26 @@ h1 {
   border-left: solid;
   border-right: solid;
   grid-column: 1;
+}
 
+.middle {
+  grid-row: 2;
 }
 
 .mode-vote {
   width: 25px;
   padding: 1em;
-  /* background-color: #C31432; */
   border-radius: 1em;
+}
+
+.neutral:hover {
+  border: black;
 }
 
 #nav-bar-container {
   grid-row: 1;
   display: grid;
   grid-template-columns: 5em 1fr;
-  /* grid-template-rows: 2.5em 2.5em; */
   background-color: #C31432;
   position: fixed;
   top: 0;
@@ -150,28 +175,23 @@ h1 {
   height: 5em;
   border-bottom: solid;
   border-top: solid;
-  /* overflow: hidden; */
-  /* margin-bottom: 2in; */
 }
 
 #nav-links-bar {
-  /* display: inline; */
   list-style-type: none;
-  /* margin: 0; */
   padding: 10px;
-
   grid-column: 2;
 }
 
 .nav-link {
-  /* display: block; */
   float: left;
   text-align: center;
   text-decoration: none;
   margin: 0;
-  color: #FFFFFF
-    /* padding: 0; */
-
+  color: #FFFFFF;
+  padding: 0;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 
 .nav-link:visited {
@@ -185,7 +205,6 @@ h1 {
 }
 
 .nav-link a {
-  /* display: block; */
   text-align: center;
   padding: 8px;
   text-decoration: none;
@@ -193,8 +212,6 @@ h1 {
 
 .nav-link :hover {
   cursor: pointer;
-  /* background-color: #C31432;
-  color: white */
 }
 
 #nc-header {
@@ -206,7 +223,24 @@ ol {
   padding: 0;
 }
 
+#post-article {
+  display: grid;
+  grid-template-rows: 30vh 30vh 30vh;
+  grid-template-columns: 1;
+}
+
+.slug{
+  text-transform: capitalize;
+  grid-column: 2;
+}
+
 #title-div {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+#title-items {
   grid-column: 2;
 }
 
@@ -217,13 +251,14 @@ ol {
   color: #C31432
 }
 
-
+.top {
+  grid-row: 1;
+  size: 30%;
+}
 
 #topics {
-
   position: relative;
   top: 1em;
-
   height: auto;
   width: fit-content;
   border: solid;
@@ -235,12 +270,9 @@ ol {
 }
 
 .topics-hidden {
-
   background-color: #C31432;
   border: solid;
 }
-
-.topics-hidden :hover {}
 
 .topic-item {
   margin-top: 1px;
@@ -263,13 +295,9 @@ ol {
 .vote-num {
   color: black;
   margin: 0;
-
 }
 
 .upvote {
   background-color: darkorange;
 }
 
-.users {
-  margin-top: 5em;
-}

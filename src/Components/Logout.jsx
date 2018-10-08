@@ -5,7 +5,7 @@ const Logout = () => {
     return (
         <div >
             <h3 className="logout-msg">You have successfully logged out.</h3>
-            <Link to={"/ncnews"}>Return to Home Page</Link>
+            <Link to={"/"}>Return to Home Page</Link>
         </div>
     );
 };

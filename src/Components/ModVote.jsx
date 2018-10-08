@@ -6,6 +6,7 @@ class ModVote extends Component {
   state = {
     voteChange: 0
   };
+
   render() {
     const { voteChange } = this.state;
     const { votes } = this.props;
@@ -33,34 +34,22 @@ class ModVote extends Component {
   }
   vote = direction => {
     const { voteChange } = this.state;
-
     let confirmed = direction;
     let double = false;
     switch (direction) {
       case "up":
-        //if already up voted make request for downvote
         if (voteChange > 0) confirmed = "down";
-        // if already downvoted make 2 requests for upvote
         if (voteChange < 0) double = true;
         break;
       case "down":
-        //if already down voted make request for upvote
         if (voteChange < 0) confirmed = "up";
-
-        //if already upvoted make 2 requests for downvote
         if (voteChange > 0) double = true;
         break;
       default:
         break;
     }
-
     this.handleState(confirmed, double);
-
     const { id, url } = this.props;
-
-    //THIS VARIABLE MAKES A CALL TO API. DONT NEED THIS
-    // const apiCall = api.castVote(id, confirmed, url)
-
     if (double === true) {
       Promise.all([
         api.castVote(id, confirmed, url),
@@ -84,6 +73,7 @@ class ModVote extends Component {
     });
   };
 }
+
 ModVote.propTypes = {
   id: PropTypes.string,
   votes: PropTypes.number

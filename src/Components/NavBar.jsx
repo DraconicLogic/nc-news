@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Topics from "./Topics";
+import Topics from "./TopicsDropdown";
 import PropTypes from "prop-types";
 
 const NavBar = ({ user, logout }) => {
   return (
     <div id="nav-bar-container">
-      <Link to={"/ncnews"}>
+      <Link to={"/"}>
         <img
           src="https://cdn-images-1.medium.com/max/1200/1*LdnSztHVYhhd8K8EqlgCJQ.png"
           alt="Northcoders Logo"
@@ -15,17 +15,13 @@ const NavBar = ({ user, logout }) => {
       </Link>
 
       <ul id="nav-links-bar">
-        <li className="nav-link">
-          <Link to={"/ncnews/articles"}>Articles</Link>
+        <li >
+          <Link className="nav-link" to={"/articles"}>Articles</Link>
         </li>
 
         <li className="nav-link">
           {" "}
           <Topics />{" "}
-        </li>
-
-        <li className="nav-link">
-          <Link to={"/new-article"}>Post New Article</Link>
         </li>
 
         {!!user.name ? (
@@ -34,13 +30,13 @@ const NavBar = ({ user, logout }) => {
               <img id="user-avatar" src={user.avater_url} alt="user avatar" />
             )}
             <p id="logged-in">Logged in as {user.username}</p>
-            <Link to={"/ncnews/logout"}>
+            <Link to={"/logout"}>
               <button onClick={logout}>Log Out</button>
             </Link>
           </li>
         ) : (
           <li className="nav-link-login">
-            <Link to={"/ncnews/login"}>Log In</Link>
+            <Link className="nav-link" to={"/login"}>Log In</Link>
           </li>
         )}
       </ul>

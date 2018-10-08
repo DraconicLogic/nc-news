@@ -1,6 +1,5 @@
 const DB_URL = 'https://draconiclogic-nc-news.herokuapp.com/api';
 
-
 const postData = (url, data) => {
     return fetch(url, {
             method: "POST",
@@ -26,42 +25,42 @@ const deleteData = (url) => {
         })
 }
 
-//could not get this working
-const withErrorHandling = (apiFunc) => {
-    return function (...args) {
-        return apiFunc(...args).catch(console.log)
-
-    }
-
+const errorHandling = (buffer) => {
+    if (buffer.status !== 200 && buffer.status !== 201) {
+        throw {
+            status: buffer.status,
+            msg: buffer.statusText
+        }
+    } 
+    return buffer
+    
 }
-
-
 
 export const getArticles = () => {
     return fetch(`${DB_URL}/articles`)
-        .then(buffer => buffer.json())
+        .then((buffer) => {
+            errorHandling(buffer)
+            return buffer.json()
+        })
 }
 
 export const getArticleByID = (id) => {
     return fetch(`${DB_URL}/articles/${id}`)
         .then((buffer) => {
-            if (buffer.status !== 200) {
-                throw {
-                    status: buffer.status,
-                    msg: buffer.statusText
-                }
-            } else {
-                return buffer.json()
-            }
+            errorHandling(buffer)
+            return buffer.json()
+            
         }).then(({
             article
         }) => article)
 }
 
-
 export const getCommentsByID = (id) => {
     return fetch(`${DB_URL}/articles/${id}/comments`)
-        .then(buffer => buffer.json())
+        .then((buffer) => {
+           
+            return buffer.json()
+        })
 }
 
 export const castVote = (id, direction, url) => {
@@ -73,10 +72,32 @@ export const castVote = (id, direction, url) => {
         })
 
 }
+
 export const getTopics = () => {
     return fetch(`${DB_URL}/topics`)
-        .then(buffer => buffer.json())
+        .then((buffer) => {
+            errorHandling(buffer)
+            return buffer.json()
+        })
 }
+
+export const postArticle = ({
+    title,
+    body,
+    created_by,
+    belongs_to
+}) => {
+    const url = `${DB_URL}/topics/${belongs_to}/articles`
+    const data = {
+        title,
+        body,
+        created_by,
+        belongs_to
+    }
+    console.log(data)
+    return postData(url, data)
+}
+
 export const postComment = ({
     body,
     belongs_to,
@@ -90,20 +111,24 @@ export const postComment = ({
     }
 
     return postData(url, data)
-
 }
+
 export const getArticleByTopic = (slug) => {
     return fetch(`${DB_URL}/topics/${slug}/articles`)
         .then(buffer => buffer.json())
 }
+
 export const getUserByID = (id) => {
     return fetch(`${DB_URL}/users/${id}`)
-        .then(buffer => buffer.json())
+        .then((buffer) => {
+            errorHandling(buffer)
+            return buffer.json()
+        })
 }
+
 export const deleteComment = (id) => {
     const url = `${DB_URL}/comments/${id}`
 
     return deleteData(url)
 }
 
-export const postArticle = () => {}

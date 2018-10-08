@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PostComment from './PostComment'
 import * as api from '../Api.js'
 import ModVote from './ModVote'
-import dayjs from 'dayjs'
 import PropTypes from 'prop-types'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
 
 class Comment extends Component {
     state = {
-        comments: []
+        comments: [],
+        visable: false
+        
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -16,43 +20,42 @@ class Comment extends Component {
             this.setState({
                 comments: newComments
             })
-            
         }
-
     }
 
     render() { 
-        const { comments } = this.state
+        const { comments, visable } = this.state
         const { user, articleid } = (this.props)      
         return (
-        <div>
+        <Fragment>
             <PostComment articleid={articleid} user={user} newComment={this.newComment}/>
-
-            <div id="comments" ref="comments"> 
+            <button onClick={this.toggleComments}>Reveal/Hide Comments</button>
+            {visable && 
+            <section id="comments" ref="comments"> 
                 <h1>Comments</h1>
-                {comments.map((comment, index) => {
-
+                {comments.map((comment) => {
                 const commenter = comment.created_by.username
                 return (
-                <div key={index} >
-
-                    <ModVote votes={comment.votes} id={comment._id} url="comments"/>
-
-                    <p>Username: {commenter} - Created at: {dayjs(comment.created_at).format('DD/MM/YYYY')}</p>
-
-                    <p>{comment.body}</p> 
-
-                    {/* render the delete button if the logged in user made the comment */}
-                    {(user.username === commenter) && <button  onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>}
-
-                    <hr/>
-                </div>
+                    <article className="comment" key={comment._id} >
+                        <ModVote votes={comment.votes} id={comment._id} url="comments"/>
+                        <p>Username: {commenter} - Posted: {dayjs().to(dayjs(comment.created_at))}</p>
+                        <p>{comment.body}</p> 
+                        {(user.username === commenter) && <button onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>}
+                        <hr/>
+                    </article>
                 );
                 })}
-            </div>  
-        </div>
+            </section>}
+        </Fragment>
         );
     }     
+
+    toggleComments = () => {
+        const { visable } = this.state
+        this.setState({
+            visable: !visable
+        })
+    }
         
     handlDeleteComment = (id) => {
         const { comments } = this.state
