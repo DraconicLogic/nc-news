@@ -13,11 +13,11 @@ class TopicArticles extends Component {
         const {topic_slug} = this.props.match.params
         api.getArticleByTopic(topic_slug)
         .then(({articles}) => {
-            articles.sort((a, b) => {
-                b.created_at - a.created_at
+            const sorted = articles.sort((a, b) => {
+                return b.created_at - a.created_at
             })
             this.setState({
-                articles: articles,
+                articles: sorted,
                 slug: topic_slug
             })
         })
