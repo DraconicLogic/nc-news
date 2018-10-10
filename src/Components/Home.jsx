@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import * as api from '../Api.js'
-import ArticleCard from './ArticleCard.jsx'
+import * as api from '../Api.js';
+import ArticleCard from './ArticleCard.jsx';
+import { Redirect } from 'react-router-dom';
 
 class Home extends Component {
     state = {
-        articles: []
+        articles: [],
+        err: null
     }
 
     componentDidMount() {
@@ -18,10 +20,23 @@ class Home extends Component {
                 articles: topFive
             })
         })
+        .catch((err) => {
+            this.setState({
+                err
+            })
+        })
     }
     
     render() {
-        const { articles } = this.state
+        const { articles, err } = this.state
+        if (err) return (
+            <Redirect to={{
+                pathname: "/error",
+                state:{
+                    from: '/',
+                    err
+                }
+            }}/>)
         return (
             <div id="home">
                 <header id="title-div">

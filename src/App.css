@@ -119,6 +119,11 @@ article {
   padding-top: 10px;
 }
 
+#fourohfour {
+  margin-top: 2em;
+  height: 90vh;
+}
+
 #home {
   grid-row: 2;
 }

@@ -21,6 +21,7 @@ class TopicArticles extends Component {
                 slug: topic_slug
             })
         })
+        
     }
 
     componentDidUpdate (prevProps) {
