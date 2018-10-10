@@ -18,8 +18,13 @@ class App extends Component {
     user: {}
   }
 
+  componentDidMount () {
+    this.handleLogin("cooljmessy")
+  }
+
   render() {
     const { user } = this.state
+    console.log(user)
     return (
       <div id="App">
         <NavBar user={user} logout={this.handleLogOut}/>
