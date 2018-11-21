@@ -12,7 +12,7 @@ Click the green "Clone or download" button then copy the url thats revealed. Usi
 
 
 
-It is hosted at [https://frontendncnews.herokuapp.com/ncnews/](https://frontendncnews.herokuapp.com/ncnews/)
+It is hosted at [https://frontendncnews.herokuapp.com/](https://frontendncnews.herokuapp.com/)
 
 The data for this project is served from the [Northcoders News API](https://github.com/DraconicLogic/BE2-northcoders-news) 
 

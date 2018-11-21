@@ -15,6 +15,8 @@ class Comment extends Component {
     }
 
     componentDidUpdate(prevProps, prevState){
+        console.log(prevProps.comments,'PREVPROPS COMMENTS')
+        console.log(this.props.comments,'PROP COMMENTS')
         if (prevProps.comments.length !== this.props.comments.length) {
             const newComments = this.props.comments
             this.setState({

@@ -58,6 +58,7 @@ export const getArticleByID = (id) => {
 export const getCommentsByID = (id) => {
     return fetch(`${DB_URL}/articles/${id}/comments`)
         .then((buffer) => {
+            console.log(buffer)
            
             return buffer.json()
         })
@@ -94,7 +95,6 @@ export const postArticle = ({
         created_by,
         belongs_to
     }
-    console.log(data)
     return postData(url, data)
 }
 

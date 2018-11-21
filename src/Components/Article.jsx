@@ -25,15 +25,19 @@ class Article extends Component {
             ]
         )
         .then(([ article, {comments}]) => {
-            comments.sort((a, b) => {
+            if (comments !== undefined) {
+                comments.sort((a, b) => {
                 return new Date(b.created_at) - new Date (a.created_at)
             })
+            }
+            
             this.setState({
                 article: article,
                 comments: comments
             })
         })
         .catch((err) => {
+            console.log(err)
             this.setState({
                 err
             })
