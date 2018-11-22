@@ -46,7 +46,7 @@ const NavBar = ({ user, logout }) => {
 
 NavBar.propTypes = {
   user: PropTypes.object.isRequired,
-  logout: PropTypes.function
+  logout: PropTypes.func
 };
 
 export default NavBar;

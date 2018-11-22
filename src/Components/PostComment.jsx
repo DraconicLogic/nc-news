@@ -13,8 +13,8 @@ class PostComment extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                <textarea ref="textInput" placeholder="Make a comment" onChange={this.handleText} name="comment" id="comment-box"/> 
-               <input type="button" onClick={this.handleSubmit} value="Submit"/><br/>
+                <textarea ref="textInput" placeholder="Make a comment" onChange={this.handleText} name="comment" id="comment-box"/><br/>
+               <input type="button" onClick={this.handleSubmit} value="Submit"/>
                {!!user._id ? null
                : <p className="login-msg">Please login to make comment</p>}
                </form>
@@ -56,7 +56,7 @@ class PostComment extends Component {
 PostComment.propTypes = {
     user: PropTypes.object.isRequired,
     articleid: PropTypes.string,
-    newComment: PropTypes.function
+    newComment: PropTypes.func
  };
 
 export default PostComment;

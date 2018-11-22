@@ -27,6 +27,7 @@ const deleteData = (url) => {
 
 const errorHandling = (buffer) => {
     if (buffer.status !== 200 && buffer.status !== 201) {
+        // eslint-disable-next-line
         throw {
             status: buffer.status,
             msg: buffer.statusText
@@ -57,9 +58,7 @@ export const getArticleByID = (id) => {
 
 export const getCommentsByID = (id) => {
     return fetch(`${DB_URL}/articles/${id}/comments`)
-        .then((buffer) => {
-            console.log(buffer)
-           
+        .then((buffer) => {           
             return buffer.json()
         })
 }

@@ -17,7 +17,6 @@ class Article extends Component {
 
     componentDidMount() {
         const { articleid } = this.props.match.params
-        console.log(articleid)
         Promise.all(
             [ 
                 api.getArticleByID(articleid),
@@ -57,7 +56,7 @@ class Article extends Component {
 
                 }}}/>
         return ( 
-            <article>
+            <article id="article-body">
                 <header>
                     <h1>{article.title}</h1>
                     <p>Posted : {dayjs().to(dayjs(article.created_at))}</p>

@@ -9,14 +9,10 @@ dayjs.extend(relativeTime)
 
 class Comment extends Component {
     state = {
-        comments: [],
-        visable: false
-        
+        comments: []        
     }
 
     componentDidUpdate(prevProps, prevState){
-        console.log(prevProps.comments,'PREVPROPS COMMENTS')
-        console.log(this.props.comments,'PROP COMMENTS')
         if (prevProps.comments.length !== this.props.comments.length) {
             const newComments = this.props.comments
             this.setState({
@@ -26,15 +22,14 @@ class Comment extends Component {
     }
 
     render() { 
-        const { comments, visable } = this.state
+        const { comments } = this.state
         const { user, articleid } = (this.props)      
         return (
         <Fragment>
-            <PostComment articleid={articleid} user={user} newComment={this.newComment}/>
-            <button onClick={this.toggleComments}>Reveal/Hide Comments</button>
-            {visable && 
+            <h1>Comments</h1>
+            <PostComment articleid={articleid} user={user} newComment={this.newComment}/>  
             <section id="comments" ref="comments"> 
-                <h1>Comments</h1>
+                
                 {comments.map((comment) => {
                 const commenter = comment.created_by.username
                 return (
@@ -47,17 +42,10 @@ class Comment extends Component {
                     </article>
                 );
                 })}
-            </section>}
+            </section>
         </Fragment>
         );
     }     
-
-    toggleComments = () => {
-        const { visable } = this.state
-        this.setState({
-            visable: !visable
-        })
-    }
         
     handlDeleteComment = (id) => {
         const { comments } = this.state
