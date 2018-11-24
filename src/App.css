@@ -110,6 +110,39 @@ article {
   height: 5em;
 }
 
+.comment {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 4fr 1fr;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-bottom: dotted;
+}
+
+.comment > .commenter {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.comment > .avatar {
+  grid-column: 1;
+  grid-row: 1;
+  height: 5em;
+  width: 5em;
+  border: solid;
+}
+
+.comment > .comment-body {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row: 2;
+}
+
+.comment > button {
+  grid-column: 3;
+  grid-row: 2;
+}
+
 .downvote {
   background-color: blue;
 }

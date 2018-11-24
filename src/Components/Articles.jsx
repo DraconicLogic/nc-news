@@ -18,6 +18,7 @@ class Articles extends Component {
 
     render() {
         const { articles } = this.state
+
         return <div className="articles">
             <h1 id="article-header">Articles</h1>
             {articles.map((newsArticle) => {

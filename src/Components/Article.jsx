@@ -45,6 +45,7 @@ class Article extends Component {
    
     render() {
         const { article, comments, err } = this.state
+        console.log(article)
         const { user } = this.props
         if (err) return <Redirect to={
             {

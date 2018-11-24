@@ -23,6 +23,7 @@ class Comment extends Component {
 
     render() { 
         const { comments } = this.state
+        console.log(comments)
         const { user, articleid } = (this.props)      
         return (
         <Fragment>
@@ -31,14 +32,18 @@ class Comment extends Component {
             <section id="comments" ref="comments"> 
                 
                 {comments.map((comment) => {
-                const commenter = comment.created_by.username
+                const {username, avatar_url} = comment.created_by
+                console.log(avatar_url)
                 return (
                     <article className="comment" key={comment._id} >
                         <ModVote votes={comment.votes} id={comment._id} url="comments"/>
-                        <p>Username: {commenter} - Posted: {dayjs().to(dayjs(comment.created_at))}</p>
-                        <p>{comment.body}</p> 
-                        {(user.username === commenter) && <button onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>}
-                        <hr/>
+                        <img className="avatar"src={avatar_url} alt="user avatar" srcset=""/>
+                        <div className="commenter">
+                            <p>Username: {username} <br/>Posted: {dayjs().to(dayjs(comment.created_at))}</p>
+                        </div>
+                        <p className="comment-body">{comment.body}</p> 
+                        {(user.username === username) && <button onClick={()=>{this.handlDeleteComment(comment._id)}}>Delete Comment</button>}
+                    
                     </article>
                 );
                 })}
